@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+
+    <div class="container p-4">
+        <h2>CRUD App with Flask</h2>
+        <form action="/" method="post">
+            <input type="text" name="title" id="title" class="form-control pt-2 mb-2" placeholder="Enter Task..." required>
+            <input type="submit" value="Add ToDo" class="btn btn-primary mb-4 mt-4">
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>  
+                    <th>Created at</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.date_created.date() }}</td>
+                        <td><a href="/update/{{task.id}}" class="btn btn-info">Update</a>
+                            <a href="/delete/{{task.id}}" class="btn btn-danger">Delete</a>
+                            </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+
+{% endblock %}
