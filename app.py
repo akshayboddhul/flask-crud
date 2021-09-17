@@ -21,6 +21,7 @@ class Todo(db.Model):
 def index():
     if request.method == 'POST':
         title = request.form['title']
+        print("TITLE:", title)
         new_task = Todo(title=title)
         try:
             db.session.add(new_task)
@@ -49,6 +50,7 @@ def update(id):
     task = Todo.query.get_or_404(id)
     if request.method == 'POST':
         task.title = request.form['title']
+        print("TITLE:", task.title)
         try:
             db.session.commit()
             return redirect('/')
